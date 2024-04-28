@@ -31,7 +31,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Serve Swagger UI
-app.use("api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Define API routes
 
@@ -76,7 +76,7 @@ app.get("/api", (req, res) => {
  *       500:
  *         description: Internal server error.
  */
-app.get("api/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -219,7 +219,7 @@ app.get("/api/count", async (req, res) => {
  *                   type: string
  *                   description: The success message.
  */
-app.post("api/count/add", async (req, res) => {
+app.post("/api/count/add", async (req, res) => {
   await incrementCounter("add");
   res.json({ message: "Counter incremented" });
 });
