@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/index.js",
+    "start": "node public/index.js",
     "dev": "nodemon api/index.js",
-    "build": "echo 'No build step required for Node.js application'"
+    "build": "mkdir public && cp -r api/* public"
   },
   "keywords": [],
   "author": "",

@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const { incrementCounter, getCounter } = require("./utils");
 const User = require("../models/users.model");
+const Counter = require("../models/counter.model");
 
 const app = express();
 
@@ -127,7 +127,16 @@ app.put("/api/users/:id", async (req, res) => {
       { data: req.body.data },
       { new: true }
     );
-    incrementCounter("update");
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    // increment update counter
+    Counter.findOneAndUpdate({}, { $inc: { update: 1 } }, { new: true }).then(
+      (counter) => {
+        console.log("Counter incremented");
+      }
+    );
+
     res.json(updatedUser);
   } catch (error) {
     console.error("Error updating user:", error);
@@ -163,7 +172,12 @@ app.post("/api/users", async (req, res) => {
   try {
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
-    incrementCounter("add");
+    // increment add counter
+    Counter.findOneAndUpdate({}, { $inc: { add: 1 } }, { new: true }).then(
+      (counter) => {
+        console.log("Counter incremented");
+      }
+    );
     res.status(201).json(savedUser);
   } catch (error) {
     console.error("Error adding user:", error);
@@ -197,7 +211,8 @@ app.post("/api/users", async (req, res) => {
  *                 description: The count of update operations.
  */
 app.get("/api/count", async (req, res) => {
-  const counter = await getCounter();
+  const counter = await Counter.findOne();
+  // console.log(counter);
   res.json(counter);
 });
 
@@ -220,7 +235,12 @@ app.get("/api/count", async (req, res) => {
  *                   description: The success message.
  */
 app.post("/api/count/add", async (req, res) => {
-  await incrementCounter("add");
+  // update value of add by 1
+  Counter.findOneAndUpdate({}, { $inc: { add: 1 } }, { new: true }).then(
+    (counter) => {
+      res.json({ message: "Counter incremented" });
+    }
+  );
   res.json({ message: "Counter incremented" });
 });
 
@@ -243,7 +263,13 @@ app.post("/api/count/add", async (req, res) => {
  *                   description: The success message.
  */
 app.post("/api/count/update", async (req, res) => {
-  await incrementCounter("update");
+  // update value of update by 1
+  Counter.findOneAndUpdate({}, { $inc: { update: 1 } }, { new: true }).then(
+    (counter) => {
+      res.json({ message: "Counter incremented" });
+    }
+  );
+
   res.json({ message: "Counter incremented" });
 });
 
