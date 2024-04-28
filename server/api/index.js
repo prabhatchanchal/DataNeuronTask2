@@ -54,7 +54,7 @@ app.use("api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *                   items:
  *                     type: string
  */
-app.get("api", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3"] });
 });
 
