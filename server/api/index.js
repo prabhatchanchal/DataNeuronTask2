@@ -31,7 +31,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 // Serve Swagger UI
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("https://dataneurontask2-34yr.onrender.com/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Define API routes
 
@@ -54,7 +54,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *                   items:
  *                     type: string
  */
-app.get("/api", (req, res) => {
+app.get("https://dataneurontask2-34yr.onrender.com/api", (req, res) => {
   res.json({ users: ["user1", "user2", "user3"] });
 });
 
@@ -76,7 +76,7 @@ app.get("/api", (req, res) => {
  *       500:
  *         description: Internal server error.
  */
-app.get("/api/users", async (req, res) => {
+app.get("https://dataneurontask2-34yr.onrender.com/api/users", async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -120,7 +120,7 @@ app.get("/api/users", async (req, res) => {
  *       500:
  *         description: Internal server error.
  */
-app.put("/api/users/:id", async (req, res) => {
+app.put("https://dataneurontask2-34yr.onrender.com/api/users/:id", async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
@@ -159,7 +159,7 @@ app.put("/api/users/:id", async (req, res) => {
  *       500:
  *         description: Internal server error.
  */
-app.post("/api/users", async (req, res) => {
+app.post("https://dataneurontask2-34yr.onrender.com/api/users", async (req, res) => {
   try {
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
@@ -196,7 +196,7 @@ app.post("/api/users", async (req, res) => {
  *                  type: number
  *                 description: The count of update operations.
  */
-app.get("/api/count", async (req, res) => {
+app.get("https://dataneurontask2-34yr.onrender.com/api/count", async (req, res) => {
   const counter = await getCounter();
   res.json(counter);
 });
@@ -219,7 +219,7 @@ app.get("/api/count", async (req, res) => {
  *                   type: string
  *                   description: The success message.
  */
-app.post("/api/count/add", async (req, res) => {
+app.post("https://dataneurontask2-34yr.onrender.com/api/count/add", async (req, res) => {
   await incrementCounter("add");
   res.json({ message: "Counter incremented" });
 });
@@ -242,7 +242,7 @@ app.post("/api/count/add", async (req, res) => {
  *                   type: string
  *                   description: The success message.
  */
-app.post("/api/count/update", async (req, res) => {
+app.post("https://dataneurontask2-34yr.onrender.com/api/count/update", async (req, res) => {
   await incrementCounter("update");
   res.json({ message: "Counter incremented" });
 });
