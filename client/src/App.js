@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from "./Components/Table";
 import { Button, TextField } from "@mui/material";
 
-const api_url = "http://localhost:5000";
+const api_url = "https://dataneurontask2-34yr.onrender.com";
 
 const App = () => {
   const [data, setData] = useState([]);
