@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const { incrementCounter, getCounter } = require("./utils");
-const User = require("./models/users.model");
+const User = require("../models/users.model");
 
 const app = express();
 
