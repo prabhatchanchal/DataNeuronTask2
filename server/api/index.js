@@ -24,7 +24,7 @@ const swaggerOptions = {
       description: "API documentation for Task 1",
     },
   },
-  apis: ["./index.js"],
+  apis: ["./api/index.js"],
 };
 
 // Initialize Swagger
