@@ -11,11 +11,11 @@ const App = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("/api/users/")
+    fetch("https://dataneurontask2-34yr.onrender.com/api/users/")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
-    fetch("/api/count")
+    fetch("https://dataneurontask2-34yr.onrender.com/api/count")
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -29,7 +29,7 @@ const App = () => {
       return;
     }
 
-    fetch("/api/users/", {
+    fetch("https://dataneurontask2-34yr.onrender.com/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const App = () => {
     ) {
       return;
     }
-    fetch(`/api/users/${document.getElementById("id").value}`, {
+    fetch(`https://dataneurontask2-34yr.onrender.com/api/users/${document.getElementById("id").value}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
