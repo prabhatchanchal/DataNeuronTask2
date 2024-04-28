@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Table from "./Components/Table";
-import { Button, ButtonGroup, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
+
+const api_url = "http://localhost:5000";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -11,11 +13,12 @@ const App = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("https://dataneurontask2-34yr.onrender.com/api/users/")
+    fetch(api_url + "/api/users/")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
-    fetch("https://dataneurontask2-34yr.onrender.com/api/count")
+
+    fetch(api_url + "/api/count")
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
@@ -29,7 +32,7 @@ const App = () => {
       return;
     }
 
-    fetch("https://dataneurontask2-34yr.onrender.com/api/users/", {
+    fetch(api_url + "/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +58,7 @@ const App = () => {
     ) {
       return;
     }
-    fetch(`https://dataneurontask2-34yr.onrender.com/api/users/${document.getElementById("id").value}`, {
+    fetch(api_url + `/api/users/${document.getElementById("id").value}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
